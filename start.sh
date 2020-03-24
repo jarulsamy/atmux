@@ -14,23 +14,20 @@ autotmux_version="1.1"
 optmesg="\e[38;5;9mstart.sh: error: no options provided\e[m"
 if [ $# == 0 ] ; then echo -e $optmesg >&2 ; exit 1 ; fi   #no option msg
 
-PWD="/home/server/seriousservers"
-
-
 e_ok() {
 	printf "[ ok ]"
 }
 e_fail() {
 	printf "[shit]"
 }
-serverstart() {
+start() {
 	# 1 is pane
 	# 2 is command
 	pan=${1:-$active_pane}
 	com=${2:-nothing}
-
+	com="$(echo ${com} | sed 's/ / Space /g')"
 	tmux select-pane -t $window.${apane}
-	tmux send-keys -t $window.${1} 'command ' $com Enter
+	tmux send-keys -t $window.${1} $com Enter
 }
 
 split() {
@@ -45,11 +42,7 @@ split() {
 pane() {
 	tmux select-pane -t $window.$1
 }
-
 echo -e "Loaded autotmux ${autotmux_version} on $(tmux -V)" ; e_ok || e_fail
-
-#rstart 2 asdasd 1G '' pi3-0.lan
-
 echo "Loading config" ; e_ok
 . ./$1
 echo -e "\e[m" ; exit 0
