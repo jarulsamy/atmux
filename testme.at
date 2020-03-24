@@ -1,0 +1,10 @@
+split v
+pane 1
+split h
+pane 3
+split h
+
+start 1 "echo This is the first window!"
+start 2 "echo Second!"
+start 3 "echo third?"
+start 4 "echo '4th :('"
