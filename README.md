@@ -1,14 +1,9 @@
 <p align="center"><img src="https://raw.githubusercontent.com/electroplankton/atmux/master/image.png"></p>
-<p align="center">autotmux</p>
+<h3 align="center">autotmux</h3>
+<p align="center">written in 50~ bash lines</p>
+launch: `./start.sh atscript.at`
 
-
-####written in 50~ bash lines
-
-launch with:
-
->./start.sh testme.at
-
-#.at file formatting:
+.at file formatting:
 
 There are 3 commands, 
   - pane [int] -> changes the active pane
