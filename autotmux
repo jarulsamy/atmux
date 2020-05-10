@@ -7,12 +7,16 @@
 #      A TMUX AUTOMATOR THAT ACTUALLY WORKS FOR A RECENT TMUX VERSION.
 #       (THAT ACTUALLY WORKS)
 #ext deps & def
+
 window=$(tmux display-message -p "#S"):$(tmux display-message -p "#{window_index}")
-active_pane=$(tmux display-message -p  "#{pane_index}")
+active_pane=$(tmux display-message -p "#{pane_index}")
 autotmux_version="1.1"
 # errors
 optmesg="\e[38;5;9m $(basename $0): error: no options provided\e[m"
-if [ $# == 0 ] ; then echo -e $optmesg >&2 ; exit 1 ; fi   #no option msg
+if [ $# == 0 ]; then
+	echo -e $optmesg >&2
+	exit 1
+fi #no option msg
 
 e_ok() {
 	printf "[ ok ]"
@@ -42,7 +46,10 @@ split() {
 pane() {
 	tmux select-pane -t $window.$1
 }
-echo -e "Loaded autotmux ${autotmux_version} on $(tmux -V)" ; e_ok || e_fail
-echo "Loading config" ; e_ok
+echo -e "Loaded autotmux ${autotmux_version} on $(tmux -V)"
+e_ok || e_fail
+echo "Loading config"
+e_ok
 . ./$1
-echo -e "\e[m" ; exit 0
+echo -e "\e[m"
+exit 0
